@@ -10,8 +10,9 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class EPLFileFinder extends JPanel {
+public class EPLFileFinder extends JPanel implements ActionListener{
 
 	/**
 	 * 
@@ -31,19 +32,8 @@ public class EPLFileFinder extends JPanel {
 			btnSearch = new JButton();
 			URL iconUrl = this.getClass().getResource("/org/epublibre/eplvalidator/images/find16.png");
 			ImageIcon icon = new ImageIcon(iconUrl);
-			btnSearch.setIcon(icon);
-			
-			btnSearch.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent ae) {
-					EPLFileChooser fileChooser = new EPLFileChooser();
-					int selection = fileChooser.showDialog(fileChooser, "Seleccionar");
-					if (selection == JFileChooser.APPROVE_OPTION)
-						EPLFileFinder.this.getTxtFileName().setText(fileChooser.getSelectedFile().getAbsolutePath());
-					fileChooser = null;
-				}
-			});
+			btnSearch.setIcon(icon);			
+			btnSearch.addActionListener(this);
 		}
 		return btnSearch;
 	}
@@ -53,6 +43,18 @@ public class EPLFileFinder extends JPanel {
 			txtFileName = new JTextField();
 		}
 		return txtFileName;
+	}
+
+	public void actionPerformed(ActionEvent ae) {
+		if(ae.getSource().equals(this.getBtnSearch())){
+			JFileChooser fileChooser = new JFileChooser();
+			fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+			fileChooser.setFileFilter(new FileNameExtensionFilter("*.epub", "epub"));
+			int selection = fileChooser.showDialog(fileChooser, "Seleccionar");
+			if (selection == JFileChooser.APPROVE_OPTION)
+				EPLFileFinder.this.getTxtFileName().setText(fileChooser.getSelectedFile().getAbsolutePath());
+			fileChooser = null;			
+		}
 	}
 
 }

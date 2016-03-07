@@ -25,6 +25,7 @@ public class Principal extends JFrame {
 	private JTextArea textArea;
 	private JButton btnValidate;
 	private EPLFileFinder btnSearch;
+	private JButton btnCopyClipboard;
 	
 	public Principal(){
 		initialize();
@@ -63,6 +64,7 @@ public class Principal extends JFrame {
 			FlowLayout layout = new FlowLayout();
 			layout.setAlignment(FlowLayout.RIGHT);
 			southPanel.setLayout(layout);
+			southPanel.add(getBtnCopyClipboard());
 			southPanel.add(getBtnValidate());
 		}
 		return southPanel;
@@ -99,4 +101,10 @@ public class Principal extends JFrame {
 		return btnSearch;
 	}
 
+	private JButton getBtnCopyClipboard() {
+		if (btnCopyClipboard == null) {
+			btnCopyClipboard = new JButton("Copiar a portapapeles");
+		}
+		return btnCopyClipboard;
+	}
 }
