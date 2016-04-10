@@ -56,6 +56,10 @@
   		<id>psiegman-repo</id>
 		<url>https://github.com/psiegman/mvn-repo/raw/master/releases</url>
   	</repository>
+  	<repository>
+		<id>eaio.com</id>
+		<url>http://repo.eaio.com/maven2</url>
+	</repository>
   </repositories>
   
   <dependencies>
@@ -70,6 +74,11 @@
   		<version>${junit.version}</version>
   		<scope>test</scope>
   	</dependency>
+  	<dependency>
+		<groupId>com.eaio.uuid</groupId>
+		<artifactId>uuid</artifactId>
+		<version>${uuid.version}</version>
+	</dependency>
   </dependencies>
   
   <properties>
@@ -77,6 +86,7 @@
   	<jdk.version>1.8</jdk.version>
   	<epublib.version>3.1</epublib.version>
   	<junit.version>4.12</junit.version>
+  	<uuid.version>3.4</uuid.version>
   </properties>
   <url>https://github.com/cyborgve/eplvalidator</url>
 </project>
